@@ -1,0 +1,31 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+  background-color: #202225;
+}
+
+.react-dropdown-select {
+  width: 300px !important;
+  border: none !important;
+  padding: 10px !important;
+  border-radius: 30px !important;
+}
+
+.react-dropdown-select-dropdown {
+  overflow-x: hidden !important;
+}
+
+.react-dropdown-select-dropdown, .react-dropdown-select-item {
+  background: #202225 !important;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  padding: 5px !important;
+  min-width: 300px !important
+}
+
+.react-dropdown-select-item:hover {
+  background: #2f3136 !important;
+}
