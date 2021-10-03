@@ -8,7 +8,7 @@ export interface Session {
   avatar?: string
 }
 
-export default function SessionBar ({ session }: { session: Session }) {
+export default function SessionBar ({ session }: { session: Session | null }) {
   const router = useRouter()
   const { t } = useTranslation()
 
@@ -23,7 +23,7 @@ export default function SessionBar ({ session }: { session: Session }) {
         <div className="p-4 text-white">
           <div className="p-4 bg-secondary rounded flex sm:inline-flex gap-4 items-center">
             <Image src="https://cdn.discordapp.com/embed/avatars/0.png" width="30" height="30" className="rounded-full" alt="avatar" />
-            <p>{t('LOADING')}</p>
+            <p>{t('EXTRA_LOADING')}</p>
           </div>
         </div>
       </Container>
@@ -36,7 +36,7 @@ export default function SessionBar ({ session }: { session: Session }) {
         <div className="p-4 bg-secondary rounded flex sm:inline-flex gap-4 items-center">
           <Image src={session?.avatar ? 'https://cdn.discordapp.com' + session?.avatar : 'https://cdn.discordapp.com/embed/avatars/0.png'} width="30" height="30" className="rounded-full" alt="avatar" />
           <p>{session?.tag}</p>
-          <button onClick={onLogout} className="rounded bg-background px-3 py-2">{t('LOGOUT')}</button>
+          <button onClick={onLogout} className="rounded bg-background px-3 py-2 transform transition-transform hover:shadow-lg hover:-translate-y-0.5">{t('SESSIONBAR_LOGOUT')}</button>
         </div>
       </div>
     </Container>

@@ -14,12 +14,16 @@
     "@fortawesome/react-fontawesome": "^0.1.15",
     "framer-motion": "^4.1.17",
     "jsonwebtoken": "^8.5.1",
+    "knex": "^0.95.11",
+    "mysql": "^2.18.1",
     "next": "11.1.2",
     "next-i18next": "^8.8.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-dropdown-select": "^4.7.4",
-    "swr": "^1.0.1"
+    "react-hot-toast": "^2.1.1",
+    "swr": "^1.0.1",
+    "ytsr": "^3.5.3"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^8.5.5",

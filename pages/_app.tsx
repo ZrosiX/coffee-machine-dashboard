@@ -5,6 +5,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
 import { AnimateSharedLayout } from 'framer-motion'
+import { Toaster } from 'react-hot-toast'
 
 function MyApp ({ Component, pageProps }) {
   return (
@@ -17,6 +18,7 @@ function MyApp ({ Component, pageProps }) {
         <meta name="oc:image" content="/favicon.png" />
         <link rel="manifest" href="manifest.json" />
       </Head>
+      <Toaster position="bottom-center" toastOptions={{ style: { background: '#5865F2', color: 'white' } }} />
       <Component {...pageProps} />
     </AnimateSharedLayout>
   )

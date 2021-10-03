@@ -14,7 +14,6 @@ export default function Callback () {
       const url = new URL(window.location.href)
       const code = url.searchParams.get('code')
       const state = url.searchParams.get('state')
-      console.log(state)
 
       if (!code) {
         router.push('/')
@@ -28,7 +27,7 @@ export default function Callback () {
       }
 
       localStorage.setItem('token', res.token)
-      router.push(`${state.split(';')[1] ? `/${state.split(';')[1]}` : ''}/dash${state.split(';')[0] ? `?guild=${state.split(';')[0]}` : ''}`)
+      router.push(`${state.split(';')[1] ? `/${state.split(';')[1]}` : ''}/dash${state.split(';')[0] ? `?g=${state.split(';')[0]}` : ''}`)
     })()
   })
 
@@ -37,7 +36,7 @@ export default function Callback () {
       <div className="overflow-hidden">
         <div className="flex justify-center items-center h-screen flex-col">
           <Image src='/logo.svg' width="192" height="192" alt='logo'/>
-          <div className="text-white p-5">{t('LOADING')}</div>
+          <div className="text-white p-5">{t('EXTRA_LOADING')}</div>
         </div>
       </div>
     </Container>

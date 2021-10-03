@@ -30,12 +30,12 @@ export default function Home () {
       <div className="overflow-hidden">
         <motion.div animate="animate" variants={variants} className="flex justify-center items-center h-screen flex-col" layoutId="logo">
           <Image src='/logo.svg' width="192" height="192" alt='logo'/>
-          <div className="p-3 text-3xl font-bold">{t('TITLE')}</div>
-          <div>{t('SUBTITLE')}</div>
+          <div className="p-3 text-3xl font-bold">{t('INTRO_TITLE')}</div>
+          <div>{t('INTRO_SUBTITLE')}</div>
           <div className="underline text-xl pt-3 hover:text-blue-300 cursor-pointer">
             <Link passHref href="/dash">
               <span>
-                {t('START_BUTTON')}&nbsp;&nbsp;<FontAwesomeIcon icon={faArrowRight}/>
+                {t('INTRO_START_BUTTON')}&nbsp;&nbsp;<FontAwesomeIcon icon={faArrowRight}/>
               </span>
             </Link>
           </div>

@@ -1,10 +1,36 @@
 {
-  "TITLE": "Coffee Machine",
-  "SUBTITLE": "24/7 play YouTube videos without commands",
-  "START_BUTTON": "Get Started",
-  "LOADING": "Loading...",
-  "BY_LWD": "by Lofi with Discord",
-  "INVITE": "Invite Bot",
-  "LOGOUT": "Logout",
-  "SELECT_GUILD": "Select Server"
+  "INTRO_TITLE": "Coffee Machine",
+  "INTRO_SUBTITLE": "play YouTube videos without commands",
+  "INTRO_START_BUTTON": "Getting Started",
+
+  "TOPBAR_TITLE": "Coffee Machine",
+  "TOPBAR_BY_LWD": "by Lofi with Discord",
+  
+  "SESSIONBAR_LOGOUT": "Log Out",
+  
+  "OPFORM_SELECT_GUILD_TITLE": "Select Server",
+  "OPFORM_SELECT_GUILD_SUBTITLE": "select server where to use",
+  "OPFORM_SELECT_GUILD_PLACEHOLDER": "click here to select...",
+  "OPFORM_SELECT_CHANNEL_TITLE": "Select Channel",
+  "OPFORM_SELECT_CHANNEL_SUBTITLE": "select 24/7 music channel",
+  "OPFORM_SELECT_CHANNEL_PLACEHOLDER": "click here to select...",
+  "OPFORM_SELECT_CHANNEL_NO_CHANNEL": "There are no visible voice channels. Please invite coffee machine bot first.",
+  "OPFORM_SELECT_VIDEO_TITLE": "Select Video",
+  "OPFORM_SELECT_VIDEO_SUBTITLE": "select video url for 24/7 play",
+  "OPFORM_SELECT_VIDEO_PLACEHOLDER": "youtube video url or search keyword",
+
+  "OPFORM_SUBMIT_TITLE": "Review Configuration",
+  "OPFORM_SUBMIT_LABEL": "Apply",
+  "OPFORM_SUBMIT_CANCEL": "Delete",
+
+  "OPFORM_SUBMIT_MISSING_GUILD": "Please Select Server",
+  "OPFORM_SUBMIT_MISSING_CHANNEL": "Please Select Channel",
+  "OPFORM_SUBMIT_MISSING_VIDEO": "Please Select Video",
+
+  "OPFORM_SUBMIT_LOADING": "Applying changes...",
+  "OPFORM_SUBMIT_SUCCESS": "Succced to apply changes!",
+  "OPFORM_SUBMIT_FAILURE": "Failed to apply changes. Please try again.",
+
+  "EXTRA_INVITE": "Invite Bot",
+  "EXTRA_LOADING": "Loading..."
 }
