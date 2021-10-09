@@ -147,7 +147,7 @@ export default function OperationForm () {
                   </div>
                 ))}
               </div>
-              : <p>{t('OPFORM_SELECT_VIDEO_SUBTITLE')}</p>}
+              : <p className="text-sm">{t('OPFORM_SELECT_VIDEO_SUBTITLE')}</p>}
           </div>
         </div>
         <div className="block xl:hidden h-1" />

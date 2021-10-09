@@ -62,6 +62,7 @@ export default async function saveAPI (req: NextApiRequest, res: NextApiResponse
     return
   }
 
+  console.log(guild)
   if (!guild.filter((g) => g.id === req.query.guild && g.permissions & 0x10)) {
     return res.status(403).json({ success: false, error: 'Forbidden' })
   }
