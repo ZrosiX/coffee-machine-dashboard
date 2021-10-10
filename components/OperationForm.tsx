@@ -10,8 +10,11 @@ import ytsr from 'ytsr'
 import toast from 'react-hot-toast'
 
 export default function OperationForm () {
-  const fetcher = (path, opt?) => fetch(path, {
-    headers: { Authorization: window.localStorage.getItem('token') },
+  const fetcher = (path: string, opt?) => fetch(path, {
+    headers: {
+      Authorization: window.localStorage.getItem('token'),
+      'Content-Type': 'application/json'
+    },
     ...opt
   }).then((res) => res.json())
 
@@ -28,22 +31,25 @@ export default function OperationForm () {
   const { data, error } = useSWR('/api/guild', fetcher)
 
   async function onChange (values) {
+    setChannelId('')
+    setVideoURL('')
+    setVideos([])
+    searchRef.current.value = ''
+
     const data = await fetcher(`/api/channels?guild=${values?.[0]?.id || guildId}`)
     const save = await fetcher(`/api/save?guild=${values?.[0]?.id || guildId}`)
 
     setGuildId(values?.[0]?.id!)
     setChannels(data.channels)
-    setChannelId('')
 
     if (save.channelId) {
-      console.log(save.channelId)
       setChannelId(save.channelId)
       setVideoURL(save.videoURL)
-
-      const data = await fetcher(`/api/ytsr?input=${encodeURIComponent(save.videoURL)}`).catch(() => ({ result: [] }))
-
-      setVideos(data.result!)
       searchRef.current.value = save.videoURL
+
+      fetcher(`/api/ytsr?input=${encodeURIComponent(save.videoURL)}`)
+        .catch(() => ({ result: [] }))
+        .then((data) => setVideos(data.result!))
     }
   }
 
@@ -71,6 +77,11 @@ export default function OperationForm () {
   async function onCancel () {
     if (!guildId) return toast.error(t('OPFORM_SUBMIT_MISSING_GUILD'))
 
+    setChannelId('')
+    setVideoURL('')
+    setVideos([])
+    searchRef.current.value = ''
+
     toast.promise(
       fetcher('/api/save', { method: 'DELETE', body: JSON.stringify({ guildId }) }),
       { loading: t('OPFORM_SUBMIT_LOADING'), success: t('OPFORM_SUBMIT_SUCCESS'), error: t('OPFORM_SUBMIT_FAILURE') }
@@ -88,7 +99,7 @@ export default function OperationForm () {
             <h1 className="text-2xl border-b-2 border-background inline-block py-2 px-1">{t('OPFORM_SELECT_GUILD_TITLE')}</h1>
 
             <Select
-              values={[guildId]}
+              values={guildId ? [data?.guild.find((c) => c.id === guildId)] : []}
               onChange={onChange}
               searchable
               options={data?.guild}
@@ -107,12 +118,12 @@ export default function OperationForm () {
             <h1 className="text-2xl border-b-2 border-background inline-block py-2 px-1">{t('OPFORM_SELECT_CHANNEL_TITLE')}</h1>
             {(channels || []).length < 1 && guildId
               ? <>
-                  <div className="py-3"><InviteBtn /></div>
+                  <div className="py-3"><InviteBtn guild={guildId}/></div>
                   <p className="text-sm">{t('OPFORM_SELECT_CHANNEL_NO_CHANNEL')}</p>
                 </>
               : <>
                   <Select
-                    values={[channelId]}
+                    values={channelId ? [channels.find((c) => c.id === channelId)] : []}
                     onChange={onChangeChannel}
                     searchable
                     disabled={!guildId}
@@ -147,7 +158,7 @@ export default function OperationForm () {
                   </div>
                 ))}
               </div>
-              : <p>{t('OPFORM_SELECT_VIDEO_SUBTITLE')}</p>}
+              : <p className="text-sm">{t('OPFORM_SELECT_VIDEO_SUBTITLE')}</p>}
           </div>
         </div>
         <div className="block xl:hidden h-1" />
