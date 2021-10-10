@@ -1,6 +1,7 @@
 import { JwtPayload, verify } from 'jsonwebtoken'
 import knex from 'knex'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { guildsPool } from '../../pools/guilds'
 
 const db = knex({
   client: 'mysql',
@@ -14,20 +15,25 @@ const db = knex({
 })
 
 const BASE_URL = 'https://discord.com/api/v8/'
+const { RESTAPI_HOST, RESTAPI_PORT } = process.env
 
 export default async function saveAPI (req: NextApiRequest, res: NextApiResponse) {
   const { authorization } = req.headers
 
   if (!authorization) return res.status(401).json({ success: false, error: 'Unauthorized' })
-  const { token } = verify(authorization, process.env.JWT_SECRET!) as JwtPayload
+  const { token, tag } = verify(authorization, process.env.JWT_SECRET!) as JwtPayload
 
-  const guild = await fetch(`${BASE_URL}/users/@me/guilds`, {
+  const cached = guildsPool.get(tag)
+  const guild = cached || await fetch(`${BASE_URL}/users/@me/guilds`, {
     headers: {
       Authorization: `Bearer ${token}`,
       'User-Agent': 'Coffee-Machine (via Next.js)'
     },
     method: 'GET'
   }).then((res) => res.json())
+
+  if (!Array.isArray(guild)) return res.send({ success: false, error: 'Invalid guild data' })
+  if (!cached) guildsPool.set(tag, guild.filter((g) => g.permissions & 0x10))
 
   if (req.method === 'POST') {
     const { channelId, guildId, videoURL } = req.body
@@ -39,10 +45,12 @@ export default async function saveAPI (req: NextApiRequest, res: NextApiResponse
       return res.status(403).json({ success: false, error: 'Forbidden' })
     }
 
-    const isExist = await db.select('*').from('brews').where({ guildId })
+    const [isExist] = await db.select('*').from('brews').where({ guildId })
 
     if (!isExist) await db.insert({ channelId, guildId, videoURL }).into('brews')
     else await db.update({ channelId, videoURL }).from('brews').where({ guildId })
+
+    await fetch(`http://${RESTAPI_HOST}:${RESTAPI_PORT}/guild/${guildId}`, { method: 'POST' })
 
     res.send({ success: true })
 
@@ -57,12 +65,12 @@ export default async function saveAPI (req: NextApiRequest, res: NextApiResponse
     }
 
     await db.delete().from('brews').where({ guildId })
+    await fetch(`http://${RESTAPI_HOST}:${RESTAPI_PORT}/guild/${guildId}`, { method: 'POST' })
     res.send({ success: true })
 
     return
   }
 
-  console.log(guild)
   if (!guild.filter((g) => g.id === req.query.guild && g.permissions & 0x10)) {
     return res.status(403).json({ success: false, error: 'Forbidden' })
   }
