@@ -1,0 +1,8 @@
+{
+  "name": "Coffee Machine",
+  "short_name": "CoffeeMachine",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#202225",
+  "description": "Play YouTube videos without commands"
+}

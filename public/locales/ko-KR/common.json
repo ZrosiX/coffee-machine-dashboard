@@ -1,0 +1,36 @@
+{
+  "INTRO_TITLE": "커피머신",
+  "INTRO_SUBTITLE": "명령어 없이 24시간 YouTube 음악 자동 재생",
+  "INTRO_START_BUTTON": "시작하기",
+
+  "TOPBAR_TITLE": "커피머신",
+  "TOPBAR_BY_LWD": "by Lofi with Discord",
+  
+  "SESSIONBAR_LOGOUT": "로그아웃",
+  
+  "OPFORM_SELECT_GUILD_TITLE": "서버 선택",
+  "OPFORM_SELECT_GUILD_SUBTITLE": "커피머신을 사용할 서버를 선택해 주세요",
+  "OPFORM_SELECT_GUILD_PLACEHOLDER": "서버 선택...",
+  "OPFORM_SELECT_CHANNEL_TITLE": "채널 선택",
+  "OPFORM_SELECT_CHANNEL_SUBTITLE": "24시간 음악을 재생할 채널을 선택해 주세요",
+  "OPFORM_SELECT_CHANNEL_PLACEHOLDER": "채널 선택...",
+  "OPFORM_SELECT_CHANNEL_NO_CHANNEL": "해당 서버에 봇이 초대되지 않았어요. 봇을 초대한 후 다시 시도해 주세요!",
+  "OPFORM_SELECT_VIDEO_TITLE": "음악 선택",
+  "OPFORM_SELECT_VIDEO_SUBTITLE": "24시간 재생할 유튜브 영상을 입력해 주세요",
+  "OPFORM_SELECT_VIDEO_PLACEHOLDER": "유튜브 영상 주소 혹은 검색어...",
+
+  "OPFORM_SUBMIT_TITLE": "설정 검토",
+  "OPFORM_SUBMIT_LABEL": "적용",
+  "OPFORM_SUBMIT_CANCEL": "설정 삭제",
+
+  "OPFORM_SUBMIT_MISSING_GUILD": "서버를 선택해 주세요",
+  "OPFORM_SUBMIT_MISSING_CHANNEL": "채널을 선택해 주세요",
+  "OPFORM_SUBMIT_MISSING_VIDEO": "음악을 선택해 주세요",
+
+  "OPFORM_SUBMIT_LOADING": "설정을 적용중입니다...",
+  "OPFORM_SUBMIT_SUCCESS": "설정을 적용하였습니다!",
+  "OPFORM_SUBMIT_FAILURE": "설정 적용중 오류가 발생하였습니다. 잠시후 다시 시도해 주세요",
+  
+  "EXTRA_INVITE": "봇 초대하기",
+  "EXTRA_LOADING": "로딩중..."
+}
