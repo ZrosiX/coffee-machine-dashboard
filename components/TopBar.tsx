@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Container from './Container'
 import { useTranslation } from 'react-i18next'
 import InviteBtn from './InviteBtn'
+import Languages from './Languages'
 
 export default function TopBar () {
   const { t } = useTranslation()
@@ -24,7 +25,10 @@ export default function TopBar () {
               </div>
             </Link>
           </div>
-          <InviteBtn />
+          <div className="flex items-center">
+            <Languages />
+            <InviteBtn />
+          </div>
         </div>
       </Container>
     </nav>

@@ -166,11 +166,11 @@ export default function OperationForm () {
           <h1 className="text-2xl border-b-2 border-background inline-block py-2 px-1">{t('OPFORM_SUBMIT_TITLE')}</h1>
           <pre className="bg-background p-3 overflow-auto rounded mt-2">{JSON.stringify({ guildId, channelId, videoURL: videoURL.replace('https://www.youtube.com/watch', 'youtube') }, null, 2)}</pre>
           <button onClick={onSubmit}
-            className="bg-green-500 px-4 py-2 mt-3 rounded cursor-pointer text-center font-bold transition-transform hover:shadow-lg hover:-translate-y-0.5">
+            className="bg-green-500 hover:bg-green-600 px-4 py-2 mt-3 rounded cursor-pointer text-center font-bold transition-transform hover:shadow-lg hover:-translate-y-0.5">
             {t('OPFORM_SUBMIT_LABEL')}
           </button>
           <button onClick={onCancel}
-            className="ml-3 border-2 border-red-400 px-4 py-2 mt-3 rounded cursor-pointer text-center font-bold transition-transform hover:shadow-lg hover:-translate-y-0.5">
+            className="ml-3 border-2 border-red-400 hover:border-red-300 px-4 py-2 mt-3 rounded cursor-pointer text-center font-bold transition-transform hover:shadow-lg hover:-translate-y-0.5">
             {t('OPFORM_SUBMIT_CANCEL')}
           </button>
         </div>

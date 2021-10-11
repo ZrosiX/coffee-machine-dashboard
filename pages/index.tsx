@@ -6,6 +6,7 @@ import { motion, Variants } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { serverSideTranslations as i18nServer } from 'next-i18next/serverSideTranslations'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import Languages from '../components/Languages'
 
 export default function Home () {
   const { t } = useTranslation()
@@ -27,20 +28,19 @@ export default function Home () {
 
   return (
     <Container>
-      <div className="overflow-hidden">
-        <motion.div animate="animate" variants={variants} className="flex justify-center items-center h-screen flex-col" layoutId="logo">
-          <Image src='/logo.svg' width="192" height="192" alt='logo'/>
-          <div className="p-3 text-3xl font-bold">{t('INTRO_TITLE')}</div>
-          <div>{t('INTRO_SUBTITLE')}</div>
-          <div className="underline text-xl pt-3 hover:text-blue-300 cursor-pointer">
-            <Link passHref href="/dash">
-              <span>
-                {t('INTRO_START_BUTTON')}&nbsp;&nbsp;<FontAwesomeIcon icon={faArrowRight}/>
-              </span>
-            </Link>
-          </div>
+      <motion.div animate="animate" variants={variants} className="flex justify-center items-center h-screen flex-col" layoutId="logo">
+        <Image src='/logo.svg' width="192" height="192" alt='logo'/>
+        <div className="p-3 text-3xl font-bold">{t('INTRO_TITLE')}</div>
+        <div>{t('INTRO_SUBTITLE')}</div>
+        <motion.div whileHover={{ translateX: '10px', skewX: -15 }} className="underline text-xl pt-3 hover:text-blue-300 cursor-pointer">
+          <Link passHref href="/dash">
+            <span>
+              {t('INTRO_START_BUTTON')}&nbsp;&nbsp;<FontAwesomeIcon icon={faArrowRight}/>
+            </span>
+          </Link>
         </motion.div>
-      </div>
+        <Languages />
+      </motion.div>
     </Container>
   )
 }

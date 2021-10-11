@@ -16,7 +16,7 @@ export default function Callback () {
       const state = url.searchParams.get('state')
 
       if (!code) {
-        router.push('/')
+        router.push(state.split(';')[1] ? `/${state.split(';')[1]}/` : '/')
         return
       }
 

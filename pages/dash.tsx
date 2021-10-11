@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import router from 'next/router'
 import { decode } from 'jsonwebtoken'
+import { useRouter } from 'next/router'
 import TopBar from '../components/TopBar'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -13,6 +13,7 @@ import { serverSideTranslations as i18nServer } from 'next-i18next/serverSideTra
 
 export default function Dash () {
   const { t } = useTranslation()
+  const router = useRouter()
   const [session, setSession] = useState<Session | null>(null)
 
   const variants: Variants = {
@@ -30,7 +31,7 @@ export default function Dash () {
   useEffect(() => {
     if (!window.localStorage.getItem('token')) {
       const guild = new URL(window.location.href).searchParams.get('g')
-      window.location.replace(`/api/redirect${guild || router.locale ? `?state=${[guild, router.locale].join(';')}` : ''}`)
+      router.push(`/api/redirect${guild || router.locale ? `?state=${[guild, router.locale].join(';')}` : ''}`, null, { locale: false })
     }
 
     const data = decode(window.localStorage.getItem('token'))
@@ -38,16 +39,16 @@ export default function Dash () {
 
     if (data.exp < Date.now()) {
       const guild = new URL(window.location.href).searchParams.get('g')
-      window.location.replace(`/api/redirect${guild || router.locale ? `?state=${[guild, router.locale].join(';')}` : ''}`)
+      router.push(`/api/redirect${guild || router.locale ? `?state=${[guild, router.locale].join(';')}` : ''}`, null, { locale: false })
     }
 
     setSession(data as Session)
-  }, [])
+  }, [router])
 
   return (
-    <>
+    <div className="min-h-screen">
       <motion.div animate="animate" whileHover="hover" variants={variants}
-        className="flex justify-center items-center absolute w-screen h-full flex-col text-white select-none">
+        className="flex justify-center items-center absolute w-full h-full flex-col text-white select-none">
         <Image src='/logo.svg' width="192" height="192" alt='logo'/>
         <div className="p-3 text-3xl font-bold">{t('INTRO_TITLE')}</div>
         <div>{t('INTRO_SUBTITLE')}</div>
@@ -60,7 +61,7 @@ export default function Dash () {
         <SessionBar session={session} />
         <OperationForm />
       </motion.div>
-    </>
+    </div>
   )
 }
 
