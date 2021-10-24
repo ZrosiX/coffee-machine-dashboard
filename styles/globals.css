@@ -28,7 +28,8 @@ html, body {
   border: 0 !important;
   border-bottom: 0 !important;
   padding: 5px !important;
-  min-width: 300px !important
+  min-width: 300px !important;
+  max-height: 100px !important;
 }
 
 .react-dropdown-select-item:hover {

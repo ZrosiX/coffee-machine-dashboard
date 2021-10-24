@@ -94,7 +94,7 @@ export default function OperationForm () {
   return (
     <Container>
       <div className="block xl:grid grid-cols-3 gap-4 px-4 py-2 h-auto xl:h-full">
-        <div className="bg-secondary text-white p-4 rounded-none xl:rounded flex flex-col md:flex-row xl:flex-col gap-10 justify-center xl:justify-between">
+        <div className="bg-secondary text-white p-4 rounded-none xl:rounded flex flex-col md:flex-row xl:flex-col gap-10 justify-center xl:justify-start">
           <div>
             <h1 className="text-2xl border-b-2 border-background inline-block py-2 px-1">{t('OPFORM_SELECT_GUILD_TITLE')}</h1>
 
