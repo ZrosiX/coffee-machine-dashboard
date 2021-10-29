@@ -1,6 +1,7 @@
-import { JwtPayload, verify } from 'jsonwebtoken'
+import { JwtPayload } from 'jsonwebtoken'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { guildsPool } from '../../pools/guilds'
+import { verifyJWT } from '../../utils/jwt'
 
 const BASE_URL = 'https://discord.com/api/v8/'
 const { RESTAPI_HOST, RESTAPI_PORT } = process.env
@@ -11,7 +12,10 @@ export default async function ChannelApi (req: NextApiRequest, res: NextApiRespo
 
   if (!guild) return res.send({ success: false, error: 'No guild specified' })
   if (!authorization) return res.status(401).json({ success: false, error: 'Unauthorized' })
-  const { token, tag } = verify(authorization, process.env.JWT_SECRET!) as JwtPayload
+  const payload = verifyJWT(authorization, process.env.JWT_SECRET!) as JwtPayload
+
+  if (!payload) return res.status(401).json({ success: false, error: 'Unauthorized' })
+  const { token, tag } = payload
 
   const cached = guildsPool.get(tag)
   const guildData = cached || await fetch(`${BASE_URL}/users/@me/guilds`, {

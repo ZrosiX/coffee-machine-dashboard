@@ -30,6 +30,11 @@ export default function SessionBar ({ session }: { session: Session | null }) {
     )
   }
 
+  if (session && !session.tag) {
+    router.push('/api/redirect')
+    return <></>
+  }
+
   return (
     <Container>
       <div className="p-4 text-white">
